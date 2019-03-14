@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
-var config = {
+export const firebaseConfig = {
   apiKey: "AIzaSyA0MyE1yvGW3vYf8O-JaHOyhZYTgqC5YrY",
   authDomain: "ionic2do-f7ddc.firebaseapp.com",
   databaseURL: "https://ionic2do-f7ddc.firebaseio.com",

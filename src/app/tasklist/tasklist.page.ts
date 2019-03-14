@@ -11,11 +11,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./tasklist.page.scss'],
 })
 export class TasklistPage implements OnInit {
-  tasks: Array<Task> = [];
+  taskList: AngularFireList<Task>;
+  tasks: Observable<any[]>;
   itemName: string;
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public af: AngularFireDatabase) 
+    {
+    this.taskList = this.af.list('/tasks');
+    this.tasks = this.taskList.valueChanges();
+    }
 
   async addItem(){
     let prompt = await this.alertCtrl.create({
@@ -36,10 +43,11 @@ export class TasklistPage implements OnInit {
           this.itemName = data.itemName;
 
           if (this.itemName !== '') {
-            this.tasks.push({
-              title: this.itemName,
-              status: 'open'
-            });
+            let newTaskRef = this.taskList.push(
+              { id: '', title: data.newTask, status: 'open' }
+            );
+            newTaskRef.update({ id: newTaskRef.key });
+
           }
           this.itemName = '';
         }
@@ -51,15 +59,13 @@ export class TasklistPage implements OnInit {
 
   markAsDone(slidingItem: IonItemSliding, task: Task) {
     task.status = "done";
+    this.taskList.update(task.id, task);
     slidingItem.close();
   }
 
   removeTask(slidingItem: IonItemSliding,task: Task) {
     task.status = "removed";
-    let index = this.tasks.indexOf(task);
-    if (index > -1) {
-      this.tasks.splice(index, 1);
-    }
+    this.taskList.remove(task.id);
     slidingItem.close();
   }
   
