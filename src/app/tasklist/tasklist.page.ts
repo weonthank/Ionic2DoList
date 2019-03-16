@@ -41,8 +41,9 @@ export class TasklistPage implements OnInit {
         text: 'Add',
         handler: data => {
           this.itemName = data.itemName;
-
+          console.log('Test handler');
           if (this.itemName !== '') {
+            console.log('Test if statement');
             let newTaskRef = this.taskList.push(
               { id: '', title: data.itemName, status: 'open' }
             );
