@@ -12,12 +12,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyCA3DfIzk_giqu1f_4RaMpLmet0HnfjXhA",
-  authDomain: "dolist-a34cf.firebaseapp.com",
-  databaseURL: "https://dolist-a34cf.firebaseio.com",
-  projectId: "dolist-a34cf",
-  storageBucket: "dolist-a34cf.appspot.com",
-  messagingSenderId: "395990788098"
+  apiKey: "AIzaSyA0MyE1yvGW3vYf8O-JaHOyhZYTgqC5YrY",
+authDomain: "ionic2do-f7ddc.firebaseapp.com",
+databaseURL: "https://ionic2do-f7ddc.firebaseio.com",
+projectId: "ionic2do-f7ddc",
+storageBucket: "ionic2do-f7ddc.appspot.com",
+messagingSenderId: "955653044272"
 };
 //firebase.initializeApp(config);
 
